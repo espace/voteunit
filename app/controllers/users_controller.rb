@@ -4,7 +4,10 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-
+    if User.find_by_f_id(@user_id)
+      @user_exist = true
+    else
+      @user_exist = false  
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -30,8 +33,6 @@ class UsersController < ApplicationController
     require 'net/http'
     result = Net::HTTP.get(URI.parse(" http://pollinglocation.googleapis.com/proxy?nid=#{params[:n_id]}&electionid=2500 "))
     lookup_result = JSON.parse(result)
-    puts "**********************************"
-    puts "**********************************"
     if lookup_result["status"] != 'SUCCESS'
       render :json => {
        'success' => false,
@@ -62,9 +63,7 @@ class UsersController < ApplicationController
        'friend_list' => @friend_list,
        'success' => true,
        'result_html' => render_to_string(partial: 'lookup.html.erb', locals: { no_friends: @friend_list.empty? })
-     } 
-    
-    
+     }     
   end
     
 end
