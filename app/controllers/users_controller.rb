@@ -56,11 +56,12 @@ class UsersController < ApplicationController
       @user.update_attributes( :f_id =>  params[:f_id], :b_id => @ballot.id)      
     end
     
-    friend_list = User.where(:b_id => @ballot).find_all_by_id(params[:friend_list]).collect { |u| u.f_id }
+    @all_friends_using_app = User.find_all_by_id(params[:friend_list]).count
+    @friend_list = User.where(:b_id => @ballot).find_all_by_id(params[:friend_list]).collect { |u| u.f_id }
     render :json => {
-       'friend_list' => friend_list,
+       'friend_list' => @friend_list,
        'success' => true,
-       'result_html' => render_to_string(partial: 'lookup.html.erb', locals: { user: @user , ballot: @ballot })
+       'result_html' => render_to_string(partial: 'lookup.html.erb', locals: { no_friends: @friend_list.empty? })
      } 
     
     

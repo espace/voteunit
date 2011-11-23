@@ -20,6 +20,11 @@ $(document).ready(function (){
           friend_list: "12"},
         success: function(response){
           $("#result_container").html(response.result_html);
+          // TODO Get friends names
+          friends = []
+          for (var i=0; i< friends.length; i++) {
+            $('#friend_list').html($('#friend_list').html()+"<li>"+ friends[i] +"<li/>")
+          }
           $('body').fadeTo( 'fast', 1);
         }
     });
