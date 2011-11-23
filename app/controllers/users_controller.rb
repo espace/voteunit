@@ -3,11 +3,17 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    @user = User.new
-    if User.find_by_f_id(@user_id)
-      @user_exist = true
-    else
-      @user_exist = false  
+    #@user = User.find_by_f_id(@user_id)
+    #if @user
+    #  @user_exist = true
+    #  @ballot = Ballot.find_by_id(@user.ballot_id)
+    #  
+    #  @all_friends_using_app = User.find_all_by_id(params[:friend_list]).count
+    #  @friend_list = User.where(:b_id => @ballot).find_all_by_id(params[:friend_list]).collect { |u| u.f_id }
+    #  
+    #else
+    #  @user_exist = false
+    #end    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -62,7 +68,7 @@ class UsersController < ApplicationController
     render :json => {
        'friend_list' => @friend_list,
        'success' => true,
-       'result_html' => render_to_string(partial: 'lookup.html.erb', locals: { no_friends: @friend_list.empty? })
+       'result_html' => render_to_string(partial: 'lookup.html.erb', locals: {no_friends: @friend_list.empty? })
      }     
   end
     
