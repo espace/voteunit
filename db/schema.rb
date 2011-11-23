@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111123133234) do
+ActiveRecord::Schema.define(:version => 20111123173323) do
 
   create_table "ballots", :force => true do |t|
     t.integer  "code",       :null => false
@@ -24,12 +24,12 @@ ActiveRecord::Schema.define(:version => 20111123133234) do
   end
 
   create_table "users", :force => true do |t|
-    t.float    "f_id",       :null => false
-    t.integer  "b_id",       :null => false
+    t.integer  "uid",        :limit => 8, :null => false
+    t.integer  "b_id",                    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["f_id", "b_id"], :name => "index_users_on_f_id_and_b_id"
+  add_index "users", ["uid", "b_id"], :name => "index_users_on_f_id_and_b_id"
 
 end
