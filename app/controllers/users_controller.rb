@@ -1,25 +1,4 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
-  end
-
-  # GET /users/1
-  # GET /users/1.json
-  def show
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
-    end
-  end
 
   # GET /users/new
   # GET /users/new.json
@@ -32,13 +11,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1/edit
-  def edit
-    @user = User.find(params[:id])
-  end
-
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(params[:user])
 
@@ -52,32 +24,46 @@ class UsersController < ApplicationController
       end
     end
   end
-
-  # PUT /users/1
-  # PUT /users/1.json
-  def update
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+  
+  def lookup
+    # look up the n_id_go
+    require 'net/http'
+    result = Net::HTTP.get(URI.parse(" http://pollinglocation.googleapis.com/proxy?nid=#{params[:n_id]}&electionid=2500 "))
+    lookup_result = JSON.parse(result)
+    puts "**********************************"
+    puts "**********************************"
+    if lookup_result["status"] != 'SUCCESS'
+      render :json => {
+       'success' => false,
+       'result_html' => render_to_string(partial: 'invalid_nid.html.erb')
+      }
+      return
     end
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :ok }
+    @ballot = Ballot.find_by_code(lookup_result["locations"][0]["code"].to_i)
+    unless @ballot.present?
+      @ballot = Ballot.new
+      @ballot.update_attributes( :code =>  lookup_result["locations"][0]["code"],
+       :name => lookup_result["locations"][0]["name"],
+       :address => lookup_result["locations"][0]["unparsed_address"],
+       :lng => lookup_result["locations"][0]["lng"],
+       :lat => lookup_result["locations"][0]["lat"])      
     end
+    @user = User.find_by_f_id(params[:f_id])
+    if @user.present?
+      @user.update_attribute( :b_id, @ballot.id )
+    else
+      @user = User.new
+      @user.update_attributes( :f_id =>  params[:f_id], :b_id => @ballot.id)      
+    end
+    
+    friend_list = User.where(:b_id => @ballot).find_all_by_id(params[:friend_list]).collect { |u| u.f_id }
+    render :json => {
+       'friend_list' => friend_list,
+       'success' => true,
+       'result_html' => render_to_string(partial: 'lookup.html.erb', locals: { user: @user , ballot: @ballot })
+     } 
+    
+    
   end
+    
 end

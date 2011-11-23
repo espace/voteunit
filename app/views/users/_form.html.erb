@@ -1,17 +1,6 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<input type="hidden" id="f_id" value="<%=%>" />
+<div>
+  <h2>Find where you will vote</h2>
+  <span><b>&nbsp;&nbsp;&nbsp;&nbsp;National ID :<b/><span/><input type="text" id="n_id" /> <input type="button" id="n_id_go" value="Go!"/>
+</div>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

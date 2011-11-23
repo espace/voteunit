@@ -7,3 +7,22 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function (){
+  $("#n_id_go").click( function() {
+    $('body').fadeTo( 'fast', 0.50);
+    $.ajax(
+    {
+        type: "POST",
+        url: "/users/lookup",
+        data: {n_id: $("#n_id").val(),
+          f_id: 15,//$("#f_id").val(),
+          friend_list: "12"},
+        success: function(response){
+          $("#result_container").html(response.result_html);
+          $('body').fadeTo( 'fast', 1);
+        }
+    });
+  });
+});
+
