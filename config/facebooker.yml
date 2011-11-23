@@ -1,0 +1,9 @@
+development:
+  app_id: <your application id>
+  secret: <your application secret>
+  api_key: <your application key>
+  
+production:
+  app_id: <your application id>
+  secret: <your application secret>
+  api_key: <your application key>
