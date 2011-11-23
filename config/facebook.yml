@@ -1,0 +1,19 @@
+development:
+  app_id: 186636844757828
+  app_secret: 0526e24efe5ea9e689d22f396811fcbd
+  canvas_url: http://apps.facebook.com/kimo_test/
+    
+test:
+  app_id: 186636844757828
+  app_secret: 0526e24efe5ea9e689d22f396811fcbd
+  canvas_url: http://apps.facebook.com/kimo_test/
+      
+staging:
+  app_id: 186636844757828
+  app_secret: 0526e24efe5ea9e689d22f396811fcbd
+  canvas_url: http://apps.facebook.com/kimo_test/
+
+production:
+  app_id: 186636844757828
+  app_secret: 0526e24efe5ea9e689d22f396811fcbd
+  canvas_url: http://apps.facebook.com/kimo_test/

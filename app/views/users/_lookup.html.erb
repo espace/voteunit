@@ -1,0 +1,20 @@
+<div>
+  <h2>Voting location</h2>
+  <div><b>&nbsp;&nbsp;&nbsp;&nbsp;School name :<b/> <%= @ballot.name%><div/>
+  <div><b>&nbsp;&nbsp;&nbsp;&nbsp;School address :<b/> <%= @ballot.address%><div/>
+</div>
+<div id="firends_container">
+
+<% if @all_friends_using_app == 0 %>
+  <h3>None of your friends use this app, please share it among your friends to know who will vote with you in the same place.<h3/>
+<% elsif no_friends %>
+  <h3><%= @all_friends_using_app%> of your friends use this app, none of them will vote in the same location as you.<h3/>
+<% else %>
+  <h3><%= @friend_list.count%> going to the same place</h3>
+  <ul id="friends_list">
+<!-- 
+    <li>Friend 1</li>
+-->
+  </ul>
+<% end %>
+</div>

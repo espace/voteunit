@@ -1,5 +1,8 @@
-<h1>New user</h1>
-
+<%= "your facebook id : #{@user_id}"%><br />
+<%= "token            : #{@token}"%>
 <%= render 'form' %>
-
-<%= link_to 'Back', users_path %>
+<% if false #@user_exist %>
+  <%= render 'lookup' %>
+<% end %>
+<div id="result_container">
+<div/>
