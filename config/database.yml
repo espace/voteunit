@@ -37,6 +37,6 @@ production:
   reconnect: false
   database: voteunit_production
   pool: 5
-  username: root
-  password:
+  username: voter
+  password: beta2aente5abeya
   socket: /var/run/mysqld/mysqld.sock
