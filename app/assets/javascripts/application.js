@@ -18,12 +18,11 @@ lookup = function(fId, friendsList){
           friend_list: friendsList},
         success: function(response){
           $("#result_container").html(response.result_html);
-          // TODO Get friends names
-          var query = "select username, profile_url from user where uid in ("+response.friend_list+")";
+          var query = "select name, profile_url from user where uid in ("+response.friend_list+")";
           getData(query, function(friends){
             html = ""
             for (var i=0; i< friends.length; i++) {
-              html += "<li><a href='"+ friends[i].profile_url +"'>"+ friends[i].username +"</a></li>"
+              html += "<li><a href='"+ friends[i].profile_url +"'>"+ friends[i].name +"</a></li>"
             }
             $('#friends_list').html(html)
           });
