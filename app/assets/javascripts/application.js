@@ -25,7 +25,14 @@ lookup = function(fId, friendsList){
               html += "<li><a href='"+ friends[i].profile_url +"'>"+ friends[i].name +"</a></li>"
             }
             $('#friends_list').html(html)
+
           });
+          if(response.send_request){
+            FB.ui({method: 'apprequests',
+              message: 'احنا حنصوت مع بعض فى نفس اللجنة !',
+              to: response.friend_list
+            }, function(){});
+          }
 
           $('body').fadeTo( 'fast', 1);
         }

@@ -22,7 +22,6 @@
         $(response).each(function(){
           friend_ids +=  this.uid2 + ',';
         });
-        console.log(friend_ids);
         lookup("<%= @user_id%>",friend_ids);
       });
     return false;
@@ -31,6 +30,12 @@
   $(document).ready(function (){
     <% if @user.present? %>
       getFriendsANDlookup();  
+    <% end %>
+    <% if params[:request_ids] %>
+      var requestIds = "<%= params[:request_ids] %>"; 
+      $(requestIds.split(",")).each(function(){
+        deleteRequest(this);
+      });
     <% end %>
     var friendListFull = false;
     $("#n_id_go").click( function() {
