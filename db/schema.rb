@@ -24,12 +24,12 @@ ActiveRecord::Schema.define(:version => 20111123173323) do
   end
 
   create_table "users", :force => true do |t|
-    t.integer  "f_id",       :limit => 8, :null => false
+    t.integer  "uid",        :limit => 8, :null => false
     t.integer  "b_id",                    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["f_id", "b_id"], :name => "index_users_on_f_id_and_b_id"
+  add_index "users", ["uid", "b_id"], :name => "index_users_on_f_id_and_b_id"
 
 end

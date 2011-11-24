@@ -19,10 +19,15 @@ lookup = function(fId, friendsList){
         success: function(response){
           $("#result_container").html(response.result_html);
           // TODO Get friends names
-          friends = []
-          for (var i=0; i< friends.length; i++) {
-            $('#friend_list').html($('#friend_list').html()+"<li>"+ friends[i] +"<li/>")
-          }
+          var query = "select username, profile_url from user where uid in ("+response.friend_list+")";
+          getData(query, function(friends){
+            html = ""
+            for (var i=0; i< friends.length; i++) {
+              html += "<li><a href='"+ friends[i].profile_url +"'>"+ friends[i].username +"</a></li>"
+            }
+            $('#friends_list').html(html)
+          });
+
           $('body').fadeTo( 'fast', 1);
         }
     });

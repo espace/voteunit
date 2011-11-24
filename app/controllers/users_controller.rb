@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    @user = User.new
+    @user = User.find_by_uid(@user_id)      
     #@user = User.find_by_uid(@user_id)
     #if @user
     #  @user_exist = true
@@ -36,37 +36,47 @@ class UsersController < ApplicationController
   end
   
   def lookup
-    # look up the n_id_go
-    require 'net/http'
-    result = Net::HTTP.get(URI.parse(" http://pollinglocation.googleapis.com/proxy?nid=#{params[:n_id]}&electionid=2500 "))
-    lookup_result = JSON.parse(result)
-    if lookup_result["status"] != 'SUCCESS'
-      render :json => {
-       'success' => false,
-       'result_html' => render_to_string(partial: 'invalid_nid.html.erb')
-      }
-      return
-    end
-    @ballot = Ballot.find_by_code(lookup_result["locations"][0]["code"].to_i)
-    unless @ballot.present?
-      @ballot = Ballot.new
-      @ballot.update_attributes( :code =>  lookup_result["locations"][0]["code"],
-       :name => lookup_result["locations"][0]["name"],
-       :address => lookup_result["locations"][0]["unparsed_address"],
-       :lng => lookup_result["locations"][0]["lng"],
-       :lat => lookup_result["locations"][0]["lat"])      
-    end
     @user = User.find_by_uid(params[:uid])
-    if @user.present?
-      @user.update_attribute( :b_id, @ballot.id )
+    if params[:n_id].present?
+      # look up the n_id_go
+      require 'net/http'
+      result = Net::HTTP.get(URI.parse(" http://pollinglocation.googleapis.com/proxy?nid=#{params[:n_id]}&electionid=2500 "))
+      lookup_result = JSON.parse(result)
+      if lookup_result["status"] != 'SUCCESS'
+        render :json => {
+         'success' => false,
+         'result_html' => render_to_string(partial: 'invalid_nid.html.erb')
+        }
+        return
+      end
+      @ballot = Ballot.find_by_code(lookup_result["locations"][0]["code"].to_i)
+      unless @ballot.present?
+        @ballot = Ballot.new
+        @ballot.update_attributes( :code =>  lookup_result["locations"][0]["code"],
+         :name => lookup_result["locations"][0]["name"],
+         :address => lookup_result["locations"][0]["unparsed_address"],
+         :lng => lookup_result["locations"][0]["lng"],
+         :lat => lookup_result["locations"][0]["lat"])      
+      end
+      if @user.present?
+        @user.update_attribute( :b_id, @ballot.id )
+      else
+        @user = User.new
+        @user.update_attributes( :uid =>  params[:uid], :b_id => @ballot.id)      
+      end
     else
-      @user = User.new
-      @user.update_attributes( :uid =>  params[:uid], :b_id => @ballot.id)      
+      @ballot = Ballot.find(@user.b_id)    
     end
     
     friend_ids=params[:friend_list].split(',').collect(&:to_i)
     @all_friends_using_app = User.where(:uid=>friend_ids).count
     @friend_list = User.where(:b_id => @ballot.id, :uid=>friend_ids)
+    puts "*************************************"
+    puts @ballot.id
+    puts @all_friends_using_app
+    puts User.where(:b_id => @ballot.id)
+    puts "*************************************"
+
     render :json => {
        'friend_list' => @friend_list,
        'success' => true,
