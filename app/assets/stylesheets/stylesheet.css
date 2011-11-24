@@ -1,0 +1,40 @@
+@font-face{font-family:'UthmanTN1Bv9';src:url('UthmanTN1Bv9.otf');}
+body,td,th{font-family:UthmanTN1Bv9, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;color:#241f20;font-size:12px;direction:rtl;}
+body{background-color:#e9e7d7;background-image:url(images/bg.png);background-repeat:repeat-x;margin-left:0px;margin-top:0px;margin-right:0px;margin-bottom:0px;}
+.hidetext{line-height:0px;font-size:0px;text-indent:-1000px;text-decoration:none;overflow:hidden;color:#d9cf9a;}
+.clearfix{clear:both;}
+p{font-size:1em;line-height:1.5;margin:0 0 1.5em 0;}
+.wrapper{
+	width:760px;margin:0 auto;}
+.header{padding-bottom:20px;}
+.logo{background:url("/images/vote-unit_sprite.png") -560px 0 no-repeat transparent;height:230px;width:200px;float:right;}
+	.logo h1{margin:0;}
+  .logo a{display:block;width:200px;height:230px;}
+.intro-text{background:url("/images/vote-unit_sprite.png") 0 0 no-repeat;width:510px;height:175px;float:right;margin:40px 25px 0;}
+.block{margin-bottom:1.5em;}
+h2.block-title{
+	background:#241F20;color:white;margin:0 -3px -8px;float:right;padding:9px 15px 15px;border-radius:4px;font-size:1.8em;line-height:1;}
+.content{
+border-radius:4px;background:white;box-shadow:3px 3px 0 #d4d2c4;position:relative;z-index:10;clear:both;padding:20px;}
+label{float:right;font-size:1.4em;padding:7px 0 0 20px;}
+.form-input input{float:right;border:0px;border-bottom:1px dashed #241f20;width:400px;padding:3px;margin-left:20px;font-size:1.4em;}
+.form-submit input{background:url("/images/vote-unit_sprite.png") 0 -186px no-repeat;width:79px;height:28px;margin:0 8px;float:right;outline:none !important;border:0;}
+.form-submit input:hover{background:url("/images/vote-unit_sprite.png") 0 -214px no-repeat;width:79px;height:28px;margin:0 8px;float:right;outline:none !important;border:0;}
+.footer{background:url("/images/vote-unit_sprite.png") bottom left no-repeat;width:760px;height:375px;}
+table{border:2px solid #6d5c38;border-radius:3px;}
+table tr th{background:#f4f3e8;font-size:1.6em;text-align:right;width:190px;border-top:1px solid #ffffff;border-bottom:1px solid #d4d2c4;border-left:1px solid #d4d2c4;}
+table tr td{background:#ffffff;font-size:1.6em;text-align:right;border-top:1px solid #ffffff;border-bottom:1px solid #d4d2c4;}
+.friends-container{width:670px;margin:0 auto;}
+.friend{width:64px;height:64px;float:right;margin:5px;}
+.friend a{width:64px;height:64px;display:block;}
+.friend img{width:64px;height:64px;border:3px solid #fff;}
+.friend img:hover{width:64px;height:64px;border:3px solid #d4d2c4;}
+.disclaimer, .error{width:500px; margin:20px auto; color:#a00000; font-size:1.4em; font-family:Arial, Helvetica, sans-serif; text-align:center;}
+h3.success{margin:0;padding:0;font-size:2em;color:#8fb926;text-align:center;}
+h3.fail{margin:0;padding:0;font-size:2em;color:#a00000;text-align:center;}
+.user-actions{width:520px;margin:30px auto;}
+.wallpost{background:url("/images/vote-unit_sprite.png") -86px -186px no-repeat;width:249px;height:40px;float:right;}
+	.wallpost:hover{background:url("/images/vote-unit_sprite.png") -86px -226px no-repeat;}
+.invitefriends{background:url("/images/vote-unit_sprite.png") -86px -266px no-repeat;width:249px;height:40px;float:left;}
+	.invitefriends:hover{background:url("/images/vote-unit_sprite.png") -86px -306px no-repeat;}
+.wallpost a, .invitefriends a{display:block;width:249px;height:40px;}

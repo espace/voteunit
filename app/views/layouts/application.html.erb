@@ -1,14 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>VoteUnit-اعرف مين من اصدقاءك معاء في نفس لجنة التصويت</title>
+  <%= stylesheet_link_tag    "application", "stylesheet" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <%= render :partial => 'shared/facebook_api'%>
+<%= yield %>
+	<div class="wrapper">
+    <div class="header">
+    	<div class="logo">
+				<h1 class="hidetext"><a href="javascript:void(0);">VoteUnit</a></h1>
+			</div><!-- Logo Ends -->
+       <div class="intro-text hidetext">عايز تعرف مين من أصحابك حينتخب معاك فى نفس اللجنة الانتخابية؟!بنقدم لك "VoteUnit" اللى عن طريقه حتعرف مين من أصحابك حيقوم بالتصويت معاك فى نفس اللجنة عشان تعرفوا تتحركوا مع بعض كمجموعة لمزيد من الامان والسهولة...
+      </div>
+      <div class="clearfix"></div>
+    </div><!-- Header Ends -->
+    <div class="main-content">
+      <%= yield %>
+    </div><!-- Main Content Ends -->
+      <div class="disclaimer">تطبيق يمكنك من معرفة اصدقائك الذين سيقومون بالتصويت معك في نفس اللجنة الانتخابية. بحيث يمكنكم التحرك كمجموعة لمزيد من الأمان</div><!-- Disclaimer Ends -->
+    <div class="footer">
+    </div><!-- Footer Ends -->
+  </div><!-- Wrapper End -->
+</body>
+</html>
+
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>Voteunit</title>
-  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag    "application", "stylesheet" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render :partial => 'shared/facebook_api'%>
-<%= yield %>
 
 <div id="facebook_invites" class="conclusion" style="width: 750px; text-align: center">
   If you like <%= link_to "apps.facebook.com/kimo_test", "/", :target => "_BLANK" %>, then please help us by spreading the word.<br/>

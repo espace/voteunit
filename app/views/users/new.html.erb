@@ -1,11 +1,16 @@
-<%= "your facebook id : #{@user_id}"%><br />
-<%= "token            : #{@token}"%>
-<%= render 'form' %>
-<% if false #@user_exist %>
-  <%= render 'lookup' %>
-<% end %>
-<div id="result_container">
-</div>
+<div class="block">
+	<h2 class="block-title">يا ترى مين حينتخب معايا؟!</h2>
+  <div class="content">
+
+    <%= render "form" %>
+
+    <% if false #@user_exist %>
+      <%= render 'lookup' %>
+    <% end %>
+    <div id="result_container">
+    </div>
+  </div><!-- Block Content Ends -->
+</div><!-- Block Ends -->
 
 <script type="text/javascript">
   getFriendsANDlookup = function(){
@@ -34,3 +39,6 @@
   });
 
 </script>
+
+
+
