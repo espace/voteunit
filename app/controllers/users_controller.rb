@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
+    @user = User.new
     #@user = User.find_by_f_id(@user_id)
     #if @user
     #  @user_exist = true
@@ -55,16 +56,16 @@ class UsersController < ApplicationController
        :lng => lookup_result["locations"][0]["lng"],
        :lat => lookup_result["locations"][0]["lat"])      
     end
-    @user = User.find_by_f_id(params[:f_id])
+    @user = User.find_by_uid(params[:f_id])
     if @user.present?
       @user.update_attribute( :b_id, @ballot.id )
     else
       @user = User.new
-      @user.update_attributes( :f_id =>  params[:f_id], :b_id => @ballot.id)      
+      @user.update_attributes( :uid =>  params[:f_id], :b_id => @ballot.id)      
     end
     
-    @all_friends_using_app = User.find_all_by_id(params[:friend_list]).count
-    @friend_list = User.where(:b_id => @ballot).find_all_by_id(params[:friend_list]).collect { |u| u.f_id }
+    @all_friends_using_app = User.find_all_by_uid(params[:friend_list]).count
+    @friend_list = User.where(:b_id => @ballot.id).find_all_by_uid(params[:friend_list]).collect { |u| u.uid }
     render :json => {
        'friend_list' => @friend_list,
        'success' => true,

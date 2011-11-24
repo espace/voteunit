@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   include Facebooker2::Rails::Controller
-  before_filter :facebook_authorize
+  before_filter :facebook_authorize, :only => :new
   protect_from_forgery
   
   def facebook_authorize
