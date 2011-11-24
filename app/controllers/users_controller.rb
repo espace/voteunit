@@ -64,8 +64,9 @@ class UsersController < ApplicationController
       @user.update_attributes( :uid =>  params[:uid], :b_id => @ballot.id)      
     end
     
-    @all_friends_using_app = User.find_all_by_uid(params[:friend_list]).count
-    @friend_list = User.where(:b_id => @ballot.id).find_all_by_uid(params[:friend_list]).collect { |u| u.uid }
+    friend_ids=params[:friend_list].split(',').collect(&:to_i)
+    @all_friends_using_app = User.where(:uid=>friend_ids).count
+    @friend_list = User.where(:b_id => @ballot.id, :uid=>friend_ids)
     render :json => {
        'friend_list' => @friend_list,
        'success' => true,
