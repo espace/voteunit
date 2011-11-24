@@ -1,7 +1,7 @@
 development:
-  app_id: 186636844757828
-  app_secret: 0526e24efe5ea9e689d22f396811fcbd
-  canvas_url: http://apps.facebook.com/kimo_test/
+  app_id: 102269883223064
+  app_secret: f6d5709c22e4cb00e8eec89062f0dbc7
+  canvas_url: http://apps.facebook.com/voteunit/
     
 test:
   app_id: 186636844757828
@@ -13,7 +13,9 @@ staging:
   app_secret: 0526e24efe5ea9e689d22f396811fcbd
   canvas_url: http://apps.facebook.com/kimo_test/
 
+
 production:
-  app_id: 186636844757828
-  app_secret: 0526e24efe5ea9e689d22f396811fcbd
-  canvas_url: http://apps.facebook.com/kimo_test/
+  app_id: 102269883223064
+  app_secret: f6d5709c22e4cb00e8eec89062f0dbc7
+  canvas_url: http://apps.facebook.com/voteunit/
+
