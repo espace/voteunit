@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
+    @user = User.new
     #@user = User.find_by_f_id(@user_id)
     #if @user
     #  @user_exist = true
@@ -64,7 +65,7 @@ class UsersController < ApplicationController
     end
     
     @all_friends_using_app = User.find_all_by_uid(params[:friend_list]).count
-    @friend_list = User.where(:b_id => @ballot).find_all_by_uid(params[:friend_list]).collect { |u| u.uid }
+    @friend_list = User.where(:b_id => @ballot.id).find_all_by_uid(params[:friend_list]).collect { |u| u.uid }
     render :json => {
        'friend_list' => @friend_list,
        'success' => true,
