@@ -1,6 +1,6 @@
 class ChangingFbidType < ActiveRecord::Migration
   def up
-    execute("ALTER TABLE users CHANGE f_id f_id BIGINT not null")
+    execute("ALTER TABLE users CHANGE f_id uid BIGINT not null")
   end
 
   def down

@@ -14,7 +14,7 @@ lookup = function(fId, friendsList){
         type: "POST",
         url: "/users/lookup",
         data: {n_id: $("#n_id").val(),
-          f_id: fId,//$("#f_id").val(),
+          uid: fId,//$("#uid").val(),
           friend_list: friendsList},
         success: function(response){
           $("#result_container").html(response.result_html);
