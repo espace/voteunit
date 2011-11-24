@@ -10,5 +10,37 @@
 <%= render :partial => 'shared/facebook_api'%>
 <%= yield %>
 
+<div id="facebook_invites" class="conclusion" style="width: 750px; text-align: center">
+  If you like <%= link_to "apps.facebook.com/kimo_test", "/", :target => "_BLANK" %>, then please help us by spreading the word.<br/>
+<a id="wall_post" href="#" style="font-size: 2em;">Post on your Wall</a><br/>
+<a id="invite_friends" href="#" style="font-size: 1.5em;">Invite your Friends</a>
+</div>
+  <div id="fb-root"></div>
+<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
+<script type="text/javascript">
+  $('#wall_post').click(function() {
+    FB.init({
+      appId:'<%= @app_id %>', cookie:true,
+      status:true, xfbml:true
+    });
+
+    FB.ui({ method: 'feed',
+      link: 'http://apps.facebook.com/kimo_test',
+      picture: 'http://www.billbaba.com/images/logo.gif',
+      description: 'There is so much more to life, other than bill payments. Try BillBaba.com and never miss another bill payment.',
+      name: 'Vote Unit'});
+  });
+
+  $('#invite_friends').click(function() {
+    FB.init({
+      appId:'<%= @app_id %>', cookie:true,
+      status:true, xfbml:true
+    });
+
+    FB.ui({ method: 'apprequests',
+      message: 'There is so much more to life, other than bill payments. Try BillBaba.com and never miss another bill payment.'});
+  });
+</script>
+
 </body>
 </html>

@@ -70,12 +70,7 @@ class UsersController < ApplicationController
     
     friend_ids=params[:friend_list].split(',').collect(&:to_i)
     @all_friends_using_app = User.where(:uid=>friend_ids).count
-    @friend_list = User.where(:b_id => @ballot.id, :uid=>friend_ids)
-    puts "*************************************"
-    puts @ballot.id
-    puts @all_friends_using_app
-    puts User.where(:b_id => @ballot.id)
-    puts "*************************************"
+    @friend_list = User.where(:b_id => @ballot.id, :uid=>friend_ids).collect { |u| u.uid }
 
     render :json => {
        'friend_list' => @friend_list,
