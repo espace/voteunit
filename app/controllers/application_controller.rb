@@ -14,6 +14,9 @@ class ApplicationController < ActionController::Base
     # TODO Authenticate
     # authorize
     decoded = ActiveSupport::Base64.decode64(payload)
+    
+    #workaround to avoid the missing '}'
+    decoded << '}' if decoded unless decoded[-1]=='}'
     data = ActiveSupport::JSON.decode(decoded)
     if data['user_id']
       @user_id =  data['user_id']
