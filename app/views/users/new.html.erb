@@ -34,7 +34,7 @@
     <% if params[:request_ids] %>
       var requestIds = "<%= params[:request_ids] %>"; 
       $(requestIds.split(",")).each(function(){
-        deleteRequest(this);
+        //deleteRequest(this);
       });
     <% end %>
     var friendListFull = false;
