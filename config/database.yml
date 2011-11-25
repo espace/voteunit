@@ -39,10 +39,10 @@ production:
 #  pool: 5
   encoding: utf8
   reconnect: false
-  database: voteunit2
-  username: root
-  password:
-#  database: voteunit2_production
+#  database: voteunit2
 #  username: root
 #  password:
+  database: voteunit_production
+  username: voter
+  password: beta2aente5abeya
   socket: /var/run/mysqld/mysqld.sock
