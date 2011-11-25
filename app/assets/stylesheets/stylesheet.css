@@ -24,7 +24,7 @@ label{float:right;font-size:1.4em;padding:7px 0 0 20px;}
 table{border:2px solid #6d5c38;border-radius:3px;}
 table tr th{background:#f4f3e8;font-size:1.6em;text-align:right;width:190px;border-top:1px solid #ffffff;border-bottom:1px solid #d4d2c4;border-left:1px solid #d4d2c4;}
 table tr td{background:#ffffff;font-size:1.6em;text-align:right;border-top:1px solid #ffffff;border-bottom:1px solid #d4d2c4;}
-.friends-container{width:670px;margin:0 auto;}
+.friends-container{width:670px;margin:0 auto;min-height:75px;}
 .friend{width:64px;height:64px;float:right;margin:5px;}
 .friend a{width:64px;height:64px;display:block;}
 .friend img{width:64px;height:64px;border:3px solid #fff;}
