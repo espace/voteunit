@@ -36,23 +36,23 @@ group :development do
 end
 
 group :test do
-  # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
 end
 
-#asnync wrappers
-gem 'eventmachine'
-gem 'rack-fiber_pool',  :require => 'rack/fiber_pool'
-gem 'em-synchrony', :require => ['em-synchrony',
-                                 'em-synchrony/em-http',
-                                 'em-synchrony/activerecord']
+group :production do
+  #asnync wrappers
+  gem 'eventmachine'
+  gem 'rack-fiber_pool',  :require => 'rack/fiber_pool'
+  gem 'em-synchrony', :require => ['em-synchrony',
+                                   'em-synchrony/em-http',
+                                   'em-synchrony/activerecord']
 
-# async activerecord requires
-gem 'mysql2', '< 0.3'
+  # async activerecord requires
+  gem 'mysql2', '< 0.3'
 
-# async http requires
-gem 'em-http-request', :require => 'em-http'
-gem 'addressable', :require => 'addressable/uri'
-
+  # async http requires
+  gem 'em-http-request', :require => 'em-http'
+  gem 'addressable', :require => 'addressable/uri'
+end
 gem 'thin'
 
