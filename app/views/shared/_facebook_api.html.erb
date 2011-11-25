@@ -20,5 +20,11 @@
       });
     }
   }
+  
+  deleteRequest = function(requestId) {
+    FB.api(requestId, 'delete', function(response) {
+      console.log(response);
+    });
+  }
 </script>
 

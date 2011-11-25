@@ -10,7 +10,6 @@
 
 <body>
   <%= render :partial => 'shared/facebook_api'%>
-<%= yield %>
 	<div class="wrapper">
     <div class="header">
     	<div class="logo">
@@ -22,56 +21,47 @@
     </div><!-- Header Ends -->
     <div class="main-content">
       <%= yield %>
+      <div class="user-actions">
+        <div class="wallpost">
+          <a id="wall_post" href="JavaScript:void(0);" class="hidetext">Post on Wall</a>
+        </div>
+        <div class="invitefriends">
+          <a id="invite_friends" href="JavaScript:void(0);" class="hidetext">Invite your Friends</a>
+        </div>
+        <div class="clearfix"></div>
+      </div>
     </div><!-- Main Content Ends -->
       <div class="disclaimer">تطبيق يمكنك من معرفة اصدقائك الذين سيقومون بالتصويت معك في نفس اللجنة الانتخابية. بحيث يمكنكم التحرك كمجموعة لمزيد من الأمان</div><!-- Disclaimer Ends -->
     <div class="footer">
     </div><!-- Footer Ends -->
   </div><!-- Wrapper End -->
-</body>
-</html>
-
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Voteunit</title>
-  <%= stylesheet_link_tag    "application", "stylesheet" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<div id="facebook_invites" class="conclusion" style="width: 750px; text-align: center">
-  If you like <%= link_to "apps.facebook.com/kimo_test", "/", :target => "_BLANK" %>, then please help us by spreading the word.<br/>
-<a id="wall_post" href="#" style="font-size: 2em;">Post on your Wall</a><br/>
-<a id="invite_friends" href="#" style="font-size: 1.5em;">Invite your Friends</a>
-</div>
-  <div id="fb-root"></div>
-<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
-<script type="text/javascript">
-  $('#wall_post').click(function() {
-    FB.init({
-      appId:'<%= @app_id %>', cookie:true,
-      status:true, xfbml:true
+  
+  
+  <script type="text/javascript">
+    $(document).ready(function(){ 
+      $('#wall_post').click(function() {
+        FB.init({
+          appId:'<%= @app_id %>', cookie:true,
+          status:true, xfbml:true
+        });
+    
+        FB.ui({ method: 'feed',
+          link: 'http://apps.facebook.com/kimo_test',
+          picture: 'http://www.billbaba.com/images/logo.gif',
+          description: 'There is so much more to life, other than bill payments. Try BillBaba.com and never miss another bill payment.',
+          name: 'Vote Unit'});
+      });
+    
+      $('#invite_friends').click(function() {
+        FB.init({
+          appId:'<%= @app_id %>', cookie:true,
+          status:true, xfbml:true
+        });
+    
+        FB.ui({ method: 'apprequests',
+          message: 'There is so much more to life, other than bill payments. Try BillBaba.com and never miss another bill payment.'});
+      });
     });
-
-    FB.ui({ method: 'feed',
-      link: 'http://apps.facebook.com/kimo_test',
-      picture: 'http://www.billbaba.com/images/logo.gif',
-      description: 'There is so much more to life, other than bill payments. Try BillBaba.com and never miss another bill payment.',
-      name: 'Vote Unit'});
-  });
-
-  $('#invite_friends').click(function() {
-    FB.init({
-      appId:'<%= @app_id %>', cookie:true,
-      status:true, xfbml:true
-    });
-
-    FB.ui({ method: 'apprequests',
-      message: 'There is so much more to life, other than bill payments. Try BillBaba.com and never miss another bill payment.'});
-  });
-</script>
-
+  </script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-     	<div class="block">
       	<h2 class="block-title">مكان لجنتك الانتخابيه:</h2>
         <div class="content">
           <table width="100%" border="0" cellspacing="0" cellpadding="10">
@@ -24,49 +23,18 @@
      	<div class="block">
       	<h2 class="block-title">أصحابك اللى معاك فى اللجنة</h2>
         <div class="content">
-        	<h3 class="success">12 من أصحابك حينتخبوا فى نفس اللجنة</h3>
-
-
-<div id="firends_container">
-
-<% if @all_friends_using_app == 0 %>
-	<h3 class="fail">لا يوجد احد من اصدقائك استخدم البرنامج</h3>
-  <!--h3>None of your friends use this app, please share it among your friends to know who will vote with you in the same place.<h3/-->
-<% elsif no_friends %>
-  <h3 class="success"><%= @all_friends_using_app%> of your friends use this app, none of them will vote in the same location as you.<h3/>
-<% else %>
-  <h3><%= @friend_list.count%> going to the same place</h3>
-  <ul id="friends_list">
-<!-- 
-    <li>Friend 1</li>
--->
-  </ul>
-<% end %>
-</div>
-
-
-          <div class="friends-container">
-
-            <% 20.times do %>
+        <% if @all_friends_using_app == 0 %>
+          <h3 class="fail">لا يوجد احد من اصدقائك استخدم البرنامج</h3>
+          <!--h3>None of your friends use this app, please share it among your friends to know who will vote with you in the same place.<h3/-->
+        <% elsif no_friends %>
+          <h3 class="fail"><%= @all_friends_using_app%> من أصحابك بيستخدموا  VoteUnit, للأسف مفيش منهم حد معاك فى نفس اللجنة<h3/>
+        <% else %>
+          <h3 class="success"><%= @friend_list.count%> من أصحابك حينتخبوا فى نفس اللجنة</h3>
+          <div  id="friends_list" class="friends-container">
+            <!--
             <div class="friend">
               <a href="JavaScript:void(0);"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/370567_673863990_1117092293_n.jpg" alt="Hashem Zahran" /></a>
             </div><!-- single friend End -->
-            <% end %>
-
           </div><!-- Friends Container Ends -->
-   
-   
+        <% end %>
         </div><!-- Block Content Ends -->
-      </div><!-- Block Ends -->   
-      <div class="user-actions">
-      	<div class="wallpost">
-        	<a href="JavaScript:void(0);" class="hidetext">Post on Wall</a>
-        </div>
-        <div class="invitefriends">
-        	<a href="JavaScript:void(0);" class="hidetext">Invite your Friends</a>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-
-
-

@@ -21,11 +21,22 @@ lookup = function(fId, friendsList){
           var query = "select name, profile_url from user where uid in ("+response.friend_list+")";
           getData(query, function(friends){
             html = ""
+            /*
+            <div class="friend">
+              <a href="JavaScript:void(0);"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/370567_673863990_1117092293_n.jpg" alt="Hashem Zahran" /></a>
+            </div><!-- single friend End --> */
             for (var i=0; i< friends.length; i++) {
-              html += "<li><a href='"+ friends[i].profile_url +"'>"+ friends[i].name +"</a></li>"
+              html += "<div class='friend'><a href='"+ friends[i].profile_url +"'>"+ friends[i].name +"</a></div>"
             }
             $('#friends_list').html(html)
+
           });
+          if(response.send_request){
+            FB.ui({method: 'apprequests',
+              message: 'احنا حنصوت مع بعض فى نفس اللجنة !',
+              to: response.friend_list
+            }, function(){});
+          }
 
           $('body').fadeTo( 'fast', 1);
         }
