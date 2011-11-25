@@ -1,0 +1,15 @@
+--- 
+chdir: /usr/local/projects/voteunit
+environment: production
+timeout: 30
+log: log/thin.log
+pid: tmp/pids/thin.pid
+max_conns: 1024
+max_persistent_conns: 512
+wait: 30
+socket: /tmp/voteunit.socket
+servers: 2
+#onebyone: true
+user: webistrano
+group: webistrano
+daemonize: true
