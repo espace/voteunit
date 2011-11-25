@@ -4,19 +4,18 @@
 
     <%= render "form" %>
 
-    <% if false #@user_exist %>
-      <%= render 'lookup' %>
-    <% end %>
-    <div id="result_container">
-    </div>
   </div><!-- Block Content Ends -->
 </div><!-- Block Ends -->
 
+<div class="block" id="result_container">
+</div><!-- Block Ends -->
 <script type="text/javascript">
   getFriendsANDlookup = function(){
     $('body').fadeTo( 'fast', 0.50);
     getData("SELECT uid2 FROM friend WHERE uid1 = me()",
       function(response){
+        console.log('***********************')
+        console.log(response)
         friendListFull = true;
         friend_ids = ''
         $(response).each(function(){

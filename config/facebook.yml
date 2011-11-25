@@ -1,7 +1,8 @@
 development:
-  app_id: 102269883223064
-  app_secret: f6d5709c22e4cb00e8eec89062f0dbc7
-  canvas_url: http://apps.facebook.com/voteunit/
+  app_id: 186636844757828
+  app_secret: 0526e24efe5ea9e689d22f396811fcbd
+  canvas_url: http://apps.facebook.com/kimo_test/
+  access_token: AAACpvsbVc0QBADqfb4ue4ZA2ZBJIij01tlyLDcZA12BvAA0kQerss44ZABleQVSV4owTSOTfUD1aoCHZCX3JuD5YQdANL4wfNAbRHg8pxYAZDZD
     
 test:
   app_id: 186636844757828
