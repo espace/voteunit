@@ -1,0 +1,61 @@
+<div class="block">
+	<h2 class="block-title">يا ترى مين حينتخب معايا؟!</h2>
+  <div class="content">
+
+    <%= render "form" %>
+
+  </div><!-- Block Content Ends -->
+</div><!-- Block Ends -->
+
+<span id="result_container">
+</span>
+
+
+<div class="user-actions">
+  <div class="wallpost">
+    <a id="wall_post" href="JavaScript:void(0);" class="hidetext">Post on Wall</a>
+  </div>
+  <div class="invitefriends">
+    <a id="invite_friends" href="JavaScript:void(0);" class="hidetext">Invite your Friends</a>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+
+<script type="text/javascript">
+  getFriendsANDlookup = function(){
+    $('body').fadeTo( 'fast', 0.50);
+    getData("SELECT uid2 FROM friend WHERE uid1 = me()",
+      function(response){
+        console.log('***********************')
+        console.log(response)
+        friendListFull = true;
+        friend_ids = ''
+        $(response).each(function(){
+          friend_ids +=  this.uid2 + ',';
+        });
+        lookup("<%= @user_id%>",friend_ids);
+      });
+    return false;
+  }
+  
+  $(document).ready(function (){
+    <% if @user.present? %>
+      getFriendsANDlookup();  
+    <% end %>
+    <% if params[:request_ids] %>
+      var requestIds = "<%= params[:request_ids] %>"; 
+      $(requestIds.split(",")).each(function(){
+        //deleteRequest(this);
+      });
+    <% end %>
+    var friendListFull = false;
+    $("#n_id_go").click( function() {
+      getFriendsANDlookup();  
+    });
+  });
+
+</script>
+
+
+

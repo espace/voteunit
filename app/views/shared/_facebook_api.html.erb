@@ -1,0 +1,30 @@
+<div id="fb-root"></div>
+
+<script src="http://connect.facebook.net/ar_AR/all.js"></script>
+<script>
+  FB.init({
+    appId  : '<%= FACEBOOK_CONFIG[:app_id] %>',
+    status : true, // check login status
+    cookie : true, // enable cookies to allow the server to access the session
+    xfbml  : true //,  // parse XFBML
+    //channelUrl  : 'http://resala.espace-technologies.com/channel.html'  // custom channel
+  });
+  
+  getData = function(query,callBack){
+    if(query == ""){
+      callBack([]);
+    }else{
+      FB.api( { method: 'fql.query', query: query},
+        function(response) {
+          callBack(response);
+      });
+    }
+  }
+  
+  deleteRequest = function(requestId) {
+    FB.api(requestId, 'delete', function(response) {
+      console.log(response);
+    });
+  }
+</script>
+

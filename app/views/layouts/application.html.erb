@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>VoteUnit-اعرف مين من اصدقاءك معاء في نفس لجنة التصويت</title>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js" %>
+  <%= stylesheet_link_tag    "stylesheet" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tag %>
+</head>
+
+<body>
+  <%= render :partial => 'shared/facebook_api'%>
+	<div class="wrapper">
+    <div class="header">
+    	<div class="logo">
+				<h1 class="hidetext"></h1>
+			</div><!-- Logo Ends -->
+       <div class="intro-text hidetext">عايز تعرف مين من أصحابك حينتخب معاك فى نفس اللجنة الانتخابية؟!بنقدم لك "VoteUnit" اللى عن طريقه حتعرف مين من أصحابك حيقوم بالتصويت معاك فى نفس اللجنة عشان تعرفوا تتحركوا مع بعض كمجموعة لمزيد من الامان والسهولة...
+      </div>
+      <div class="clearfix"></div>
+    </div><!-- Header Ends -->
+    <div class="main-content">
+      <%= yield %>
+
+    </div><!-- Main Content Ends -->
+      <div class="disclaimer">تطبيق يمكنك من معرفة اصدقائك الذين سيقومون بالتصويت معك في نفس اللجنة الانتخابية. بحيث يمكنكم التحرك كمجموعة لمزيد من الأمان</div><!-- Disclaimer Ends -->
+    <div class="footer">
+    </div><!-- Footer Ends -->
+  </div><!-- Wrapper End -->
+  
+  
+  <script type="text/javascript">
+    $(document).ready(function(){ 
+      $('#wall_post').click(function() {
+        FB.init({
+          appId:'<%= @app_id %>', cookie:true,
+          status:true, xfbml:true
+        });
+    
+        FB.ui({ method: 'feed',
+          link: '<%= FACEBOOK_CONFIG[:canvas_url] %>',
+          picture: 'http://www.billbaba.com/images/logo.gif',
+          description: 'اعرف مين من أصحابك هيصوت معاك فى نفس اللجنة!',
+          name: 'Vote Unit'});
+      });
+    
+      $('#invite_friends').click(function() {
+        FB.init({
+          appId:'<%= @app_id %>', cookie:true,
+          status:true, xfbml:true
+        });
+    
+        FB.ui({ method: 'apprequests',
+          message: 'اعرف مين من أصحابك هيصوت معاك فى نفس اللجنة!'});
+      });
+    });
+  </script>
+</body>
+</html>
