@@ -6,11 +6,14 @@
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 development:
-  adapter: mysql2
+  adapter: em_mysql2
+  pool: 250
+  timeout: 5000
+#  adapter: mysql2
+#  pool: 5
   encoding: utf8
   reconnect: false
   database: voteunit2
-  pool: 5
   username: root
   password:
   socket: /var/run/mysqld/mysqld.sock
@@ -29,11 +32,17 @@ test:
   socket: /var/run/mysqld/mysqld.sock
 
 production:
-  adapter: mysql2
+  adapter: em_mysql2
+  pool: 250
+  timeout: 5000
+#  adapter: mysql2
+#  pool: 5
   encoding: utf8
   reconnect: false
-  database: voteunit2_production
-  pool: 5
+  database: voteunit2
   username: root
   password:
+#  database: voteunit2_production
+#  username: root
+#  password:
   socket: /var/run/mysqld/mysqld.sock

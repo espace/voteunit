@@ -5,7 +5,7 @@ gem 'rails', '3.0.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2', '~> 0.2.6'
+#gem 'mysql2', '~> 0.2.6'
 
 
 gem "facebooker2", "~> 0.0.13"
@@ -32,3 +32,37 @@ gem 'ruby-debug19', :require => 'ruby-debug'
 # group :development, :test do
 #   gem 'webrat'
 # end
+
+
+# async wrappers
+gem 'eventmachine'
+gem 'rack-fiber_pool',  :require => 'rack/fiber_pool'
+gem 'em-synchrony', :require => ['em-synchrony',
+                                 'em-synchrony/em-http',
+                                 'em-synchrony/activerecord']
+
+# async activerecord requires
+gem 'mysql2'
+
+# async http requires
+gem 'em-http-request', :require => 'em-http'
+gem 'addressable', :require => 'addressable/uri'
+
+gem 'thin'
+
+# async wrappers
+gem 'eventmachine'
+gem 'rack-fiber_pool',  :require => 'rack/fiber_pool'
+gem 'em-synchrony', :require => ['em-synchrony',
+                                 'em-synchrony/em-http',
+                                 'em-synchrony/activerecord']
+
+# async activerecord requires
+gem 'mysql2'
+
+# async http requires
+gem 'em-http-request', :require => 'em-http'
+gem 'addressable', :require => 'addressable/uri'
+
+gem 'thin'
+

@@ -1,3 +1,7 @@
 
 <h1><span>برجاء زيارة </span><br><a href="http://apps.facebook.com/voteunit"> تطبيقنا على فيسبوك</a></h1>
 
+<% puts "start" %>
+<%=  User.limit(1).select('sleep(2)').all %>
+<% puts "end" %>
+

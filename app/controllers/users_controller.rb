@@ -43,10 +43,13 @@ class UsersController < ApplicationController
     @user = User.find_by_uid(params[:uid])
     new_user = false
     ballot_modified = false
-    params[:n_id] = '000' if params[:n_id].blank?
+   # params[:n_id] = '000' if params[:n_id].blank?
     if params[:n_id].present?
       # look up the n_id_go
-      result = Net::HTTP.get(URI.parse(" http://pollinglocation.googleapis.com/proxy?nid=#{params[:n_id] }&electionid=2500 "))
+
+      http = EM::HttpRequest.new("http://pollinglocation.googleapis.com/proxy?nid=#{params[:n_id] }&electionid=2500").get
+      result = http.response
+#      result = Net::HTTP.get(URI.parse("http://pollinglocation.googleapis.com/proxy?nid=#{params[:n_id] }&electionid=2500"))
       lookup_result = JSON.parse(result)
       if lookup_result["status"] != 'SUCCESS'
         render :json => {
