@@ -5,8 +5,6 @@ gem 'rails', '3.1.3'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
-
 gem "facebooker2", "~> 0.0.13"
 # Gems used only for assets and not required
 # in production environments by default.
@@ -41,3 +39,20 @@ group :test do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
 end
+
+#asnync wrappers
+gem 'eventmachine'
+gem 'rack-fiber_pool',  :require => 'rack/fiber_pool'
+gem 'em-synchrony', :require => ['em-synchrony',
+                                 'em-synchrony/em-http',
+                                 'em-synchrony/activerecord']
+
+# async activerecord requires
+gem 'mysql2', '< 0.3'
+
+# async http requires
+gem 'em-http-request', :require => 'em-http'
+gem 'addressable', :require => 'addressable/uri'
+
+gem 'thin'
+
