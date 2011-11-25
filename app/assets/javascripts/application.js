@@ -18,15 +18,22 @@ lookup = function(fId, friendsList){
           friend_list: friendsList},
         success: function(response){
           $("#result_container").html(response.result_html);
-          var query = "select name, profile_url from user where uid in ("+response.friend_list+")";
+          var query = "select uid, name, profile_url from user where uid in ("+response.friend_list+")";
           getData(query, function(friends){
             html = ""
             /*
             <div class="friend">
-              <a href="JavaScript:void(0);"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/370567_673863990_1117092293_n.jpg" alt="Hashem Zahran" /></a>
+              <a href="JavaScript:void(0);">
+                <img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/370567_673863990_1117092293_n.jpg" alt="Hashem Zahran" />
+              </a>
             </div><!-- single friend End --> */
+            src = ""
             for (var i=0; i< friends.length; i++) {
-              html += "<div class='friend'><a href='"+ friends[i].profile_url +"'>"+ friends[i].name +"</a></div>"
+              html += "<div class='friend'>"
+              html += "<a target='_blank' href='"+friends[i].profile_url+"'>"
+              html += "<img src='http://graph.facebook.com/"
+              html += friends[i].uid + "/picture' title='"+friends[i].name+"'>"
+              html += "</a></div>"
             }
             $('#friends_list').html(html)
 

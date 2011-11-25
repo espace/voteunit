@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>VoteUnit-اعرف مين من اصدقاءك معاء في نفس لجنة التصويت</title>
-  <%= stylesheet_link_tag    "application", "stylesheet" %>
+  <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -13,7 +13,7 @@
 	<div class="wrapper">
     <div class="header">
     	<div class="logo">
-				<h1 class="hidetext"><a href="javascript:void(0);">VoteUnit</a></h1>
+				<h1 class="hidetext"></h1>
 			</div><!-- Logo Ends -->
        <div class="intro-text hidetext">عايز تعرف مين من أصحابك حينتخب معاك فى نفس اللجنة الانتخابية؟!بنقدم لك "VoteUnit" اللى عن طريقه حتعرف مين من أصحابك حيقوم بالتصويت معاك فى نفس اللجنة عشان تعرفوا تتحركوا مع بعض كمجموعة لمزيد من الامان والسهولة...
       </div>
@@ -46,9 +46,9 @@
         });
     
         FB.ui({ method: 'feed',
-          link: 'http://apps.facebook.com/kimo_test',
+          link: '<%= FACEBOOK_CONFIG[:canvas_url] %>',
           picture: 'http://www.billbaba.com/images/logo.gif',
-          description: 'There is so much more to life, other than bill payments. Try BillBaba.com and never miss another bill payment.',
+          description: 'اعرف مين من أصحابك هيصوت معاك فى نفس اللجنة!',
           name: 'Vote Unit'});
       });
     
@@ -59,7 +59,7 @@
         });
     
         FB.ui({ method: 'apprequests',
-          message: 'There is so much more to life, other than bill payments. Try BillBaba.com and never miss another bill payment.'});
+          message: 'اعرف مين من أصحابك هيصوت معاك فى نفس اللجنة!'});
       });
     });
   </script>

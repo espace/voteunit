@@ -1,6 +1,6 @@
 @font-face{font-family:'UthmanTN1Bv9';src:url('UthmanTN1Bv9.otf');}
 body,td,th{font-family:UthmanTN1Bv9, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;color:#241f20;font-size:12px;direction:rtl;}
-body{background-color:#e9e7d7;background-image:url(images/bg.png);background-repeat:repeat-x;margin-left:0px;margin-top:0px;margin-right:0px;margin-bottom:0px;}
+body{background-color:#e9e7d7;background-image:url("/images/bg.png");background-repeat:repeat-x;margin-left:0px;margin-top:0px;margin-right:0px;margin-bottom:0px;}
 .hidetext{line-height:0px;font-size:0px;text-indent:-1000px;text-decoration:none;overflow:hidden;color:#d9cf9a;}
 .clearfix{clear:both;}
 p{font-size:1em;line-height:1.5;margin:0 0 1.5em 0;}
