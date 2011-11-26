@@ -28,7 +28,7 @@
           <h3 class="fail">لا يوجد احد من اصدقائك استخدم البرنامج</h3>
           <!--h3>None of your friends use this app, please share it among your friends to know who will vote with you in the same place.<h3/-->
         <% elsif no_friends %>
-          <h3 class="fail"><%= @all_friends_using_app%> من أصحابك بيستخدموا  VoteUnit, للأسف مفيش منهم حد معاك فى نفس اللجنة<h3/>
+          <h3 class="fail"><%= @all_friends_using_app%> من أصحابك بيستخدموا  VoteUnit, للأسف مفيش منهم حد معاك فى نفس اللجنة , إستمر في نشر التطبيق بين أصدقائك وحنقولك لو حد منهم معاك في نفس اللجنة.<h3/>
         <% else %>
           <h3 class="success"><%= @friend_list.count%> من أصحابك حينتخبوا فى نفس اللجنة</h3>
           <div  id="friends_list" class="friends-container">
