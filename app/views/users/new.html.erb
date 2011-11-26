@@ -27,8 +27,8 @@
     $('body').fadeTo( 'fast', 0.50);
     getData("SELECT uid2 FROM friend WHERE uid1 = me()",
       function(response){
-        console.log('***********************')
-        console.log(response)
+        //console.log('***********************');
+        //console.log(response);
         friendListFull = true;
         friend_ids = ''
         $(response).each(function(){
