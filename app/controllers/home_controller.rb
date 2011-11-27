@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   def debug
     nid=params[:nid]
-    render :text=>get_http("http://www.elections2011.eg/proxy.php?type=nid&id=#{nid}")
+    render :text=>get_json(nid)
   end
 
 end
