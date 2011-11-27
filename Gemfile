@@ -9,6 +9,7 @@ gem 'rails', '3.0.9'
 
 
 gem "facebooker2", "~> 0.0.13"
+gem 'newrelic_rpm'
 
 # Use unicorn as the web server
 # gem 'unicorn'
