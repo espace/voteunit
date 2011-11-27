@@ -49,12 +49,8 @@ class UsersController < ApplicationController
 
 #      http = EM::HttpRequest.new("http://pollinglocation.googleapis.com/proxy?nid=#{params[:n_id] }&electionid=2500").get
 #      http = EM::HttpRequest.new("https://www.elections2011.eg/proxy.php?type=nid&id=#{params[:n_id]}").get
-      http = EM::HttpRequest.new("http://www.elections2011.eg/proxy.php?type=nid&id=#{params[:n_id]}").get
 
-      result = http.response
-
-      body=result[0..(result.index(']'))]+'}'
-      lookup_result=JSON.parse(body.gsub(/\(|\)/,''))
+      lookup_result=get_json(params[:n_id])
     
 
       if lookup_result["status"] != 'SUCCESS'

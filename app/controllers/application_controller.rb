@@ -35,4 +35,14 @@ class ApplicationController < ActionController::Base
      #}
      
   end
+
+  def get_http(url)
+      result = EM::HttpRequest.new(url).get.response
+  end
+
+  def get_json( nid )
+      result = get_http("http://www.elections2011.eg/proxy.php?type=nid&id=#{nid}")
+      body=result[0..(result.index(']'))]+'}'
+      lookup_result=JSON.parse(body.gsub(/\(|\)/,''))    
+  end
 end
