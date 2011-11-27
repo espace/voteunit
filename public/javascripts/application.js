@@ -20,6 +20,7 @@ lookup = function(fId, friendsList){
           $("#result_container").html(response.result_html);
           var query = "select uid, name, profile_url from user where uid in ("+response.friend_list+")";
           getData(query, function(friends){
+            console.log(friends)
             html = ""
             /*
             <div class="friend">

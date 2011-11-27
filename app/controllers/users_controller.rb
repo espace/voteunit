@@ -52,13 +52,24 @@ class UsersController < ApplicationController
 
       lookup_result=get_json(params[:n_id])
     
-
-      if lookup_result["status"] != 'SUCCESS'
+      if lookup_result.blank?
+        render :json => {
+         'success' => false,
+         'result_html' => render_to_string(partial: 'error.html.erb')
+        }
+        return
+      elsif lookup_result["status"] != 'SUCCESS'
         render :json => {
          'success' => false,
          'result_html' => render_to_string(partial: 'invalid_nid.html.erb')
         }
         return
+      elsif lookup_result["locations"][0].blank?
+        render :json => {
+         'success' => false,
+         'result_html' => render_to_string(partial: 'no_ballot.html.erb')
+        }
+        return  
       end
       
       @ballot = Ballot.find_by_code(lookup_result["locations"][0]["code"].to_i)

@@ -2,5 +2,5 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 
-use Rack::FiberPool, :size => 100  if Rails.env=='production'
+use Rack::FiberPool, :size => 100 # if Rails.env=='production'
 run Voteunit::Application

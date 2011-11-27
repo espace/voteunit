@@ -42,7 +42,11 @@ class ApplicationController < ActionController::Base
 
   def get_json( nid )
       result = get_http("https://www.elections2011.eg/proxy.php?type=nid&id=#{nid}")
-      body=result[0..(result.index(']'))]+'}'
-      lookup_result=JSON.parse(body.gsub(/\(|\)/,''))    
+      if result.blank?
+        lookup_result = result
+      else     
+        body=result[0..(result.index(']'))]+'}'
+        lookup_result=JSON.parse(body.gsub(/\(|\)/,''))  
+      end    
   end
 end
