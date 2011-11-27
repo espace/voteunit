@@ -47,10 +47,16 @@ class UsersController < ApplicationController
     if params[:n_id].present?
       # look up the n_id_go
 
-      http = EM::HttpRequest.new("http://pollinglocation.googleapis.com/proxy?nid=#{params[:n_id] }&electionid=2500").get
+#      http = EM::HttpRequest.new("http://pollinglocation.googleapis.com/proxy?nid=#{params[:n_id] }&electionid=2500").get
+#      http = EM::HttpRequest.new("https://www.elections2011.eg/proxy.php?type=nid&id=#{params[:n_id]}").get
+      http = EM::HttpRequest.new("http://www.elections2011.eg/proxy.php?type=nid&id=#{params[:n_id]}").get
+
       result = http.response
-#      result = Net::HTTP.get(URI.parse("http://pollinglocation.googleapis.com/proxy?nid=#{params[:n_id] }&electionid=2500"))
-      lookup_result = JSON.parse(result)
+
+      body=result[0..(result.index(']'))]+'}'
+      lookup_result=JSON.parse(body.gsub(/\(|\)/,''))
+    
+
       if lookup_result["status"] != 'SUCCESS'
         render :json => {
          'success' => false,
